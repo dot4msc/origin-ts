@@ -30,12 +30,18 @@ export class Game {
     const delta = (time - this.lastTime) / 1000;
     this.lastTime = time;
 
-    this.worlds.forEach(World => {
-      const world = new World;
-      world.update(delta);
-    });
+    this.lag += delta;
+    
+    while(this.lag >= this.TIMESTEP){
+      this.worlds.forEach(World => {
+        const world = new World;
+        world.update(delta);
+      });
+    }
 
-    pos += 50 * delta;
+    pos += 50 * this.TIMESTEP;
+
+    this.lag -= this.TIMESTEP;
 
     this.renderManager.render(pos,100, lambda);
     
