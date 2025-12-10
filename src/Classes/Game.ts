@@ -5,14 +5,19 @@ import type { World } from "./World";
 let pos = 0;
 
 export class Game {
+
   private renderManager: RenderManager;
   private worlds: Array<new () => World>;
   private lastTime : number;
+  private lag: number;
+  private readonly TIMESTEP:number = 1/60;
+
   constructor(canvas: HTMLCanvasElement, worlds: Array<new () => World>){
     this.lastTime = 0;
     this.renderManager = new RenderManager(canvas.getContext("2d")!);
     this.loop = this.loop.bind(this);
-    this.worlds= [...worlds];
+    this.worlds = [...worlds];
+    this.lag = 0;
   }
 
   public start() {
@@ -31,7 +36,9 @@ export class Game {
     });
 
     pos += 50 * delta;
-    this.renderManager.render(pos,100, lambda)
+
+    this.renderManager.render(pos,100, lambda);
+    
     requestAnimationFrame(this.loop);
   }
 
