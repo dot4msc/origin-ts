@@ -2,7 +2,7 @@ import { Game } from './Classes/Game';
 import { SampleWorld } from './Classes/SampleWorld';
 
 const canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
-const game:Game = new Game(canvas, [SampleWorld]);
+const game:Game = new Game(canvas, [new SampleWorld()]);
 
 canvas.addEventListener("touchmove", (event) => {
   event.preventDefault();

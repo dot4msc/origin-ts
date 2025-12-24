@@ -1,18 +1,19 @@
 import { RenderManager } from "./RenderManager";
 import lambda from "../Lambda_V1_1024.png";
 import type { World } from "./World";
+import { Sprite } from "./Sprite";
 
 let pos = 0;
 
 export class Game {
 
   private renderManager: RenderManager;
-  private worlds: Array<new () => World>;
+  private worlds: World[];
   private lastTime : number;
   private lag: number;
   private readonly TIMESTEP:number = 1/60;
 
-  constructor(canvas: HTMLCanvasElement, worlds: Array<new () => World>){
+  constructor(canvas: HTMLCanvasElement, worlds: World[]){
     this.lastTime = 0;
     this.renderManager = new RenderManager(canvas.getContext("2d")!);
     this.loop = this.loop.bind(this);
@@ -21,6 +22,7 @@ export class Game {
   }
 
   public start() {
+    console.log("enter start");
     requestAnimationFrame(this.loop)
   }
 
@@ -33,17 +35,13 @@ export class Game {
     this.lag += delta;
     
     while(this.lag >= this.TIMESTEP){
-      this.worlds.forEach(World => {
-        const world = new World;
+      this.worlds.forEach(world => {
         world.update(delta);
       });
+      this.lag -= this.TIMESTEP;
     }
 
-    pos += 50 * this.TIMESTEP;
-
-    this.lag -= this.TIMESTEP;
-
-    this.renderManager.render(pos,100, lambda);
+    this.renderManager.render(this.worlds); //<-
     
     requestAnimationFrame(this.loop);
   }
