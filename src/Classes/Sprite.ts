@@ -1,6 +1,8 @@
 // import type { Renderable } from "../Interfaces/Renderable";
 // import { Vector2 } from "./Vector2";
 
+import type { Input } from "./Input";
+
 
 export abstract class Sprite {
   private id: string;
@@ -17,7 +19,7 @@ export abstract class Sprite {
     this.y = y;
   }
   
-  public abstract update(delta?: number, time?: number): void;
+  public abstract update(input: Input, delta?: number, time?: number): void;
 
   public draw(context: CanvasRenderingContext2D) {
     context.clearRect(0,0, context.canvas.width, context.canvas.height);

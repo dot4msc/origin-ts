@@ -1,3 +1,4 @@
+import type { Input } from "./Input";
 import type { Sprite } from "./Sprite";
 
 export abstract class World {
@@ -16,5 +17,5 @@ export abstract class World {
     this._sprites = s;
   }
 
-  abstract update(delta?: number, time?: number): void;
+  abstract update(input: Input, delta?: number, time?: number): void;
 }

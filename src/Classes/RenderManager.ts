@@ -34,25 +34,6 @@ export class RenderManager {
     //Apply this to pixel art images
     this.context.imageSmoothingEnabled = false;
   }
-
-
-  /**
-   * private getImage(imagePath: string): returns given image path as a loaded image element
-   * 
-   */
-  private getImage(imagePath: string): HTMLImageElement {
-    // Check if image exists in loadedImages if it is, return that specific image
-    if(this.loadedImages.has(imagePath)) {
-      return this.loadedImages.get(imagePath)!;
-    }
-
-    // Set the image and added to the loadedImages Map
-    const img = new Image();
-    img.src = imagePath;
-    this.loadedImages.set(imagePath, img);
-
-    return img;
-  }
   
   public render(worlds: World[]) : void{
     const canvas = this.context.canvas;

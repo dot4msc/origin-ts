@@ -1,5 +1,5 @@
 import { Game } from './Classes/Game';
-import { SampleWorld } from './Classes/SampleWorld';
+import { SampleWorld } from './Tests/SampleWorld';
 
 const canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
 const game:Game = new Game(canvas, [new SampleWorld()]);
