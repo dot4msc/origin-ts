@@ -1,10 +1,6 @@
 import { RenderManager } from "./RenderManager";
-import lambda from "../Lambda_V1_1024.png";
 import type { World } from "./World";
-import { Sprite } from "./Sprite";
 import { Input } from "./Input";
-
-let pos = 0;
 
 export class Game {
 
