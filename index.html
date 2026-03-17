@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Origin.ts</title>
+  </head>
+  <style>
+    * {
+      scroll-behavior: none;
+      overscroll-behavior: none;
+    }
+
+    html,body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior: none;
+      scroll-behavior: none;
+    }
+
+    canvas {
+      display: block;
+      image-rendering: pixelated;
+    }
+  </style>
+  <body>
+    <canvas id="main"></canvas>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

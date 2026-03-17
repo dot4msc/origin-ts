@@ -14,12 +14,12 @@ In the first month, you're building the skeleton of a game engine. It will feel 
 
 ### **What You'll Build This Month**
 
-* ~~A window/canvas setup~~
-* ~~A game loop with `update` and `render`~~
-* ~~A simple renderer abstraction~~
-* ~~A basic Sprite class~~
-* ~~A player that moves around the screen with keyboard input~~
-* ~~Asset loading (just images)~~
+* A window/canvas setup
+* A game loop with `update` and `render`
+* A simple renderer abstraction
+* A basic Sprite class
+* A player that moves around the screen with keyboard input
+* Asset loading (just images)
 
 ### **Skills You'll Learn**
 
