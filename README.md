@@ -50,6 +50,21 @@ If you decide to push this project to a GitHub repository, you can install it in
     npm install github:your-username/origin-ts
     ```
 
+### 🔗 Method 3: Global Linking (Easiest for multiple projects)
+Use this if you want to make Origin accessible globally on your machine so any project can use it without typing long file paths.
+
+1.  **Register the engine globally**:
+    In this folder (`origin-ts`), run:
+    ```bash
+    npm link
+    ```
+
+2.  **Use it in any other project**:
+    In your new project's folder, run:
+    ```bash
+    npm link @origin/core
+    ```
+
 ---
 
 ## 🚀 Usage
