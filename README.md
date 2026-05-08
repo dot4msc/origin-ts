@@ -18,24 +18,47 @@
 
 ---
 
-## 📦 Installation (Local Library)
+## 📦 Installation
 
-To use Origin as a dependency in another project:
+Since this is a local library, you **do not** need to download it from GitHub. You can link it directly from your hard drive.
 
-1.  **Build the library**:
+### 🏠 Method 1: Local Installation (Recommended for Development)
+Use this if you want to test the library in another folder on the same machine.
+
+1.  **Build the library** in this folder:
     ```bash
     npm run build:lib
     ```
 
-2.  **Install in your test project**:
+2.  **Install in your test project** by pointing to this folder's absolute path:
     ```bash
+    # Replace with your actual path if different
     npm install "C:/Users/Mariano/Documents/dot4msc/origin-ts"
     ```
 
-3.  **Import and Use**:
-    ```typescript
-    import { Engine, Display, World, Transform, SpriteComponent } from '@origin/core';
+### 🌐 Method 2: GitHub Installation (Optional)
+If you decide to push this project to a GitHub repository, you can install it in other projects using:
+
+1.  **Push to GitHub**:
+    ```bash
+    git remote add origin <your-repo-url>
+    git push -u origin main
     ```
+
+2.  **Install via GitHub**:
+    ```bash
+    npm install github:your-username/origin-ts
+    ```
+
+---
+
+## 🚀 Usage
+
+Once installed, you can import the engine as a scoped package:
+
+```typescript
+import { Engine, Display, World, Transform, SpriteComponent } from '@origin/core';
+```
 
 ---
 
