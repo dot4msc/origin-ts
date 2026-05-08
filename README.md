@@ -1,103 +1,96 @@
-# 🚀 Origin Engine (v0.0.1-alpha)
+# 🚀 origin-ts Engine (v0.0.1)
 
-**Origin** is a specialized, lightweight game engine built with TypeScript, designed exclusively for creating **pixel art RPGs**. It prioritizes pixel-perfect rendering, modular architecture, and classic RPG features.
+**Origin** is a specialized, high-performance game engine built with TypeScript, designed exclusively for **pixel art RPGs**. It provides a professional-grade foundation for world-building, entity management, and cinematic storytelling.
 
 ---
 
-## ✨ Key Features
+## ✨ Core Features
 
-- **🎮 Hybrid ECS Architecture**: Modular Entity-Component-System for flexible game objects.
-- **🖥️ Pixel-Perfect Rendering**: Built-in integer scaling and `image-rendering: pixelated` support.
-- **🗺️ Tiled Integration**: Load `.tmj` maps directly with support for layers and collisions.
-- **🛡️ Physics & Collisions**: AABB bounding boxes with "sliding" wall physics.
-- **🔝 Automatic Z-Sorting**: Characters automatically walk behind/in-front of objects based on depth.
-- **💬 Dialogue Engine**: Typewriter-style text boxes with portrait and speaker support.
-- **🎬 Event System**: Async/Promise-based cutscene and trigger management.
-- **🌓 Retro Shaders**: CSS-based CRT scanlines, vignettes, and Day/Night color grading.
-- **💾 Save System**: Persistent state using `localStorage`.
+### 🎮 Advanced ECS Architecture
+*   **Modular Entities**: Use the Entity-Component-System pattern to build complex actors (Players, NPCs, Items) using reusable data components.
+*   **Decoupled Logic**: Separate your game logic (Systems) from your data (Components) for maximum scalability.
+
+### 🖥️ Pixel-Perfect Rendering
+*   **Integer Scaling**: Automatic calculation of scaling factors to ensure your pixels stay crisp on any screen size.
+*   **Z-Depth Sorting**: Automatic Y-coordinate sorting ensures players correctly walk behind/in-front of trees, buildings, and NPCs.
+
+### 🛡️ World & Physics
+*   **Tiled Support**: Direct integration with [Tiled Map Editor](https://www.mapeditor.org/) (.tmj JSON).
+*   **Sliding Collisions**: AABB bounding box physics that allow for smooth sliding along walls and diagonal movement.
+
+### 💬 RPG Mechanics
+*   **Dialogue Engine**: Cinematic typewriter effects, speaker portraits, and branching text management.
+*   **Event System**: A Promise-based system for scripting cutscenes and map triggers.
+*   **Save System**: Built-in persistence using `localStorage`.
+
+### 🌓 Retro Shaders (CSS-Based)
+*   **CRT Scanlines**: Subtile horizontal scanlines for that classic monitor feel.
+*   **Day/Night Cycles**: Dynamic color grading for sunset and night-time aesthetics.
+*   **Vignette**: Subtle edge-darkening to focus player attention.
 
 ---
 
 ## 📦 Installation
 
-Since this is a local library, you **do not** need to download it from GitHub. You can link it directly from your hard drive.
+### **From NPM**
+```bash
+npm install origin-ts
+```
 
-### 🏠 Method 1: Local Installation (Recommended for Development)
-Use this if you want to test the library in another folder on the same machine.
+### **Local Development (Global Link)**
+If you want to use the local version on your machine:
+```bash
+# In the origin-ts folder
+npm link
 
-1.  **Build the library** in this folder:
-    ```bash
-    npm run build:lib
-    ```
-
-2.  **Install in your test project** by pointing to this folder's absolute path:
-    ```bash
-    # Replace with your actual path if different
-    npm install "C:/Users/Mariano/Documents/dot4msc/origin-ts"
-    ```
-
-### 🌐 Method 2: GitHub Installation (Optional)
-If you decide to push this project to a GitHub repository, you can install it in other projects using:
-
-1.  **Push to GitHub**:
-    ```bash
-    git remote add origin <your-repo-url>
-    git push -u origin main
-    ```
-
-2.  **Install via GitHub**:
-    ```bash
-    npm install github:your-username/origin-ts
-    ```
-
-### 🔗 Method 3: Global Linking (Easiest for multiple projects)
-Use this if you want to make Origin accessible globally on your machine so any project can use it without typing long file paths.
-
-1.  **Register the engine globally**:
-    In this folder (`origin-ts`), run:
-    ```bash
-    npm link
-    ```
-
-2.  **Use it in any other project**:
-    In your new project's folder, run:
-    ```bash
-    npm link @origin/core
-    ```
-
----
-
-## 🚀 Usage
-
-Once installed, you can import the engine as a scoped package:
-
-```typescript
-import { Engine, Display, World, Transform, SpriteComponent } from '@origin/core';
+# In your game project folder
+npm link origin-ts
 ```
 
 ---
 
-## 📂 Architecture
+## 🚀 Quick Start
 
-- `core/`: Main loop, Input, Assets, Events, and Save systems.
-- `rendering/`: Canvas management, Shaders, and Sprite rendering.
-- `world/`: Tilemap parsing and Collision logic.
-- `entities/`: ECS framework, Components, and logic Systems.
-- `ui/`: Dialogue and Menu management.
-- `game/`: Your specific game implementation.
+```typescript
+import { Engine, Display, World, Transform, SpriteComponent, Kinematics } from 'origin-ts';
+
+const display = new Display('app');
+const world = new World();
+
+// Create a player actor
+const player = world.createEntity();
+world.addComponent(player, new Transform(160, 90));
+world.addComponent(player, new Kinematics());
+world.addComponent(player, new SpriteComponent('hero-sprite'));
+
+// Start the engine
+const engine = new Engine(
+  (dt) => world.update(dt),
+  () => world.render()
+);
+engine.start();
+```
 
 ---
 
-## 🛠️ Development
+## 📂 Project Architecture
 
-- `npm run dev`: Start the development server (Vite).
-- `npm run build:lib`: Generate the library distribution (`dist/`).
-- `npm run build`: Full build (Vite + Library).
+```text
+src/
+├── core/           # Main Loop, Input, Assets, Events, Persistence
+├── rendering/      # Canvas (Display) & Sprite management
+├── world/          # Tilemaps & Collision logic
+├── entities/       # ECS Framework, Components, and Logic Systems
+├── ui/             # Dialogue Manager & UI Elements
+└── game/           # Gameplay implementation entry point
+```
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License** with a **Beerware Clause**. 
+This project is licensed under the **MIT License** with a **Beerware Clause**.
 
-See the [LICENSE](LICENSE) file for the full text. In short: use it for whatever you want, don't sue me if it breaks, and buy me a beer if we ever meet! 🍻
+> *Permission is hereby granted... use it for whatever you want. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return. Cheers! 🍻*
+
+Created by **Mariano Hurtado de Mendoza Carranza** (@d0t4.music on IG/YT)
