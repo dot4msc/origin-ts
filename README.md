@@ -97,4 +97,7 @@ import { Engine, Display, World, Transform, SpriteComponent } from '@origin/core
 ---
 
 ## 📜 License
-Internal Development Alpha.
+
+This project is licensed under the **MIT License** with a **Beerware Clause**. 
+
+See the [LICENSE](LICENSE) file for the full text. In short: use it for whatever you want, don't sue me if it breaks, and buy me a beer if we ever meet! 🍻
