@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2023",
+    "target": "ES2023",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "lib": ["ES2023", "DOM"],
     "skipLibCheck": true,
 
@@ -16,8 +16,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
-    "strict": true,
-    "ignoreDeprecations": "6.0"
+    "strict": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
