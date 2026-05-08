@@ -37,8 +37,15 @@
 npm install origin-ts
 ```
 
-### **Local Development (Global Link)**
-If you want to use the local version on your machine:
+### **Local Installation (Same Machine)**
+Use this if you want to point directly to the origin-ts folder:
+```bash
+# Replace with your actual path to the origin-ts folder
+npm install "/path/to/origin-ts"
+```
+
+### **Global Linking (Recommended for Dev)**
+Use this to make the engine accessible globally on your machine:
 ```bash
 # In the origin-ts folder
 npm link
