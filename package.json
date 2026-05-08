@@ -1,11 +1,19 @@
 {
-  "name": "origin-ts",
+  "name": "@origin/core",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1-alpha",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:lib": "tsc",
     "preview": "vite preview"
   },
   "devDependencies": {
