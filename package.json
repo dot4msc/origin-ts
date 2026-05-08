@@ -1,15 +1,33 @@
 {
-  "name": "@origin/core",
-  "private": true,
-  "version": "0.0.1-alpha",
+  "name": "@d0t4/origin",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "README.md",
+    "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dot4msc/origin-ts.git"
+  },
+  "keywords": [
+    "game-engine",
+    "pixel-art",
+    "rpg",
+    "typescript",
+    "ecs"
+  ],
+  "author": "Mariano Hurtado de Mendoza Carranza",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
