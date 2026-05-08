@@ -2,7 +2,7 @@ import { World, Entity } from '../entities/ECS';
 import { Transform, Stats, Inventory } from '../entities/Components';
 
 export class SaveSystem {
-  private SAVE_KEY = 'origin_engine_save_v1';
+  private SAVE_KEY = 'origin_ts_save_v1';
 
   public saveGame(world: World, playerEntity: Entity): void {
     const transform = world.getComponent(playerEntity, Transform);

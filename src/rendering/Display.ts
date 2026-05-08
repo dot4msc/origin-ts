@@ -12,7 +12,7 @@ export class Display {
     this.canvas = document.createElement('canvas');
     this.canvas.width = GAME_WIDTH;
     this.canvas.height = GAME_HEIGHT;
-    this.canvas.id = 'origin-canvas';
+    this.canvas.id = 'origin-ts-canvas';
     
     // Pixel-perfect settings
     this.canvas.style.imageRendering = 'pixelated';

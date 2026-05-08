@@ -1,6 +1,6 @@
 # 🚀 origin-ts Engine (v0.0.1)
 
-**Origin** is a specialized, high-performance game engine built with TypeScript, designed exclusively for **pixel art RPGs**. It provides a professional-grade foundation for world-building, entity management, and cinematic storytelling.
+**origin-ts** is a specialized, high-performance game engine built with TypeScript, designed exclusively for **pixel art RPGs**. It provides a professional-grade foundation for world-building, entity management, and cinematic storytelling.
 
 ---
 

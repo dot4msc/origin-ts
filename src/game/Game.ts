@@ -52,8 +52,8 @@ export class Game {
 
     // Trigger Entrance Event
     events.playDialogue([
-      { speaker: 'System', text: 'Welcome to the Origin Engine.' },
-      { speaker: 'Origin', text: 'You can move with WASD, change time with N, and save with F5.' }
+      { speaker: 'System', text: 'Welcome to the origin-ts Engine.' },
+      { speaker: 'origin-ts', text: 'You can move with WASD, change time with N, and save with F5.' }
     ]);
   }
 

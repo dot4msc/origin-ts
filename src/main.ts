@@ -14,7 +14,7 @@ async function bootstrap() {
   );
 
   engine.start();
-  console.log('Origin Engine Started Successfully');
+  console.log('origin-ts Engine Started Successfully');
 }
 
 bootstrap().catch(err => {
