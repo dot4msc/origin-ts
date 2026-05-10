@@ -7,12 +7,11 @@ export * from './core/Constants';
 export * from './rendering/Display';
 export * from './rendering/Sprite';
 export * from './entities/ECS';
-export * from './entities/Components';
 export * from './world/Tilemap';
 export * from './ui/DialogueManager';
 
-// Export systems too so users can create their own worlds
-export * from './entities/systems/AnimationSystem';
-export * from './entities/systems/ControlSystem';
-export * from './entities/systems/MovementSystem';
-export * from './entities/systems/RenderSystem';
+import * as Components from './entities/Components';
+import * as Systems from './entities/systems';
+export { Components, Systems };
+
+export * from './entities/EntityFactory';

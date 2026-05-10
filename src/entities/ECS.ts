@@ -34,6 +34,12 @@ export class World {
     this.components.get(type)!.set(entity, component);
   }
 
+  public addComponents(entity: Entity, componentsObj: Record<string, Component>): void {
+    for (const key in componentsObj) {
+      this.addComponent(entity, componentsObj[key]);
+    }
+  }
+
   public getComponent<T extends Component>(entity: Entity, type: ComponentType<T>): T | undefined {
     return this.components.get(type)?.get(entity);
   }
@@ -46,13 +52,33 @@ export class World {
     this.systems.push(system);
   }
 
+  public addSystems(systemsObj: Record<string, System | { system: System; ctx?: any }>): void {
+    for (const key in systemsObj) {
+      const item = systemsObj[key];
+      if (item instanceof System) {
+        this.addSystem(item);
+      } else if (item && item.system instanceof System) {
+        this.addSystem(item.system);
+      }
+    }
+  }
+
   public update(dt: number): void {
     for (const system of this.systems) {
       system.update(this.entities, this, dt);
+    }
+  }
+
+  public render(interpolation: number): void {
+    for (const system of this.systems) {
+      if (system.render) {
+        system.render(this.entities, this, interpolation);
+      }
     }
   }
 }
 
 export abstract class System {
   public abstract update(entities: Set<Entity>, world: World, dt: number): void;
+  public render?(entities: Set<Entity>, world: World, interpolation: number): void;
 }

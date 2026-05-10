@@ -1,19 +1,8 @@
 import { Display } from '../rendering/Display';
 import { assets } from '../core/AssetLoader';
 import { World, Entity } from '../entities/ECS';
-import { 
-  Transform, 
-  Kinematics, 
-  SpriteComponent, 
-  PlayerControl, 
-  BoxCollider, 
-  Stats, 
-  Inventory 
-} from '../entities/Components';
-import { ControlSystem } from '../entities/systems/ControlSystem';
-import { MovementSystem } from '../entities/systems/MovementSystem';
-import { RenderSystem } from '../entities/systems/RenderSystem';
-import { AnimationSystem } from '../entities/systems/AnimationSystem';
+import * as Components from '../entities/Components';
+import * as Systems from '../entities/systems';
 import { Tilemap } from '../world/Tilemap';
 import { input } from '../core/Input';
 import { dialogue } from '../ui/DialogueManager';
@@ -29,10 +18,12 @@ export class Game {
 
   constructor(private display: Display) {
     this.world = new World();
-    this.world.addSystem(new ControlSystem());
-    this.world.addSystem(new MovementSystem());
-    this.world.addSystem(new AnimationSystem());
-    this.world.addSystem(new RenderSystem(this.display.ctx));
+    this.world.addSystems({
+      control: new Systems.ControlSystem(),
+      movement: new Systems.MovementSystem(),
+      animation: new Systems.AnimationSystem(),
+      render: new Systems.RenderSystem(this.display.ctx)
+    });
 
     this.display.setShader('shader-crt', true);
     this.display.setShader('shader-vignette', true);
@@ -42,13 +33,15 @@ export class Game {
     await assets.loadImage('player', '/player.png');
 
     this.player = this.world.createEntity();
-    this.world.addComponent(this.player, new Transform(160, 90));
-    this.world.addComponent(this.player, new Kinematics());
-    this.world.addComponent(this.player, new BoxCollider(8, 8, 0, 4));
-    this.world.addComponent(this.player, new PlayerControl(80));
-    this.world.addComponent(this.player, new SpriteComponent('player'));
-    this.world.addComponent(this.player, new Stats({ current: 100, max: 100 }, { current: 50, max: 50 }));
-    this.world.addComponent(this.player, new Inventory());
+    this.world.addComponents(this.player, {
+      transform: new Components.Transform(160, 90),
+      kinematics: new Components.Kinematics(),
+      collider: new Components.BoxCollider(8, 8, 0, 4),
+      control: new Components.PlayerControl(80),
+      sprite: new Components.SpriteComponent('player'),
+      stats: new Components.Stats({ current: 100, max: 100 }, { current: 50, max: 50 }),
+      inventory: new Components.Inventory()
+    });
 
     // Trigger Entrance Event
     events.playDialogue([
@@ -83,6 +76,9 @@ export class Game {
   public render(interpolation: number): void {
     this.display.clear('#141414');
     if (this.tilemap) this.tilemap.render(this.display.ctx, 'Background');
+
+    // Draw world entities
+    this.world.render(interpolation);
 
     // Dialogue is drawn on top of the world
     dialogue.render(this.display.ctx, GAME_WIDTH, GAME_HEIGHT);

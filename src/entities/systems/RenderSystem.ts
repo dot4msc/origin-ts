@@ -11,6 +11,10 @@ export class RenderSystem extends System {
   }
 
   public update(entities: Set<Entity>, world: World, dt: number): void {
+    // Rendering logic has been moved to the render pass.
+  }
+
+  public render(entities: Set<Entity>, world: World, interpolation: number): void {
     const renderableEntities = Array.from(entities).filter(id => 
       world.hasComponent(id, Transform) && world.hasComponent(id, SpriteComponent)
     );

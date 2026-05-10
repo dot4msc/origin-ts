@@ -59,21 +59,22 @@ npm link origin-ts
 ## 🚀 Quick Start
 
 ```typescript
-import { Engine, Display, World, Transform, SpriteComponent, Kinematics } from 'origin-ts';
+import { Engine, Display, World, AbstractEntityFactory, DefaultGameFactory } from 'origin-ts';
 
 const display = new Display('app');
 const world = new World();
+const factory: AbstractEntityFactory = new DefaultGameFactory(world);
 
-// Create a player actor
-const player = world.createEntity();
-world.addComponent(player, new Transform(160, 90));
-world.addComponent(player, new Kinematics());
-world.addComponent(player, new SpriteComponent('hero-sprite'));
+// Create a player actor using the Factory
+factory.createPlayer({ spriteName: 'hero-sprite', x: 160, y: 90, speed: 100 });
 
 // Start the engine
 const engine = new Engine(
   (dt) => world.update(dt),
-  () => world.render()
+  (interpolation) => {
+    display.clear('#000000');
+    world.render(interpolation);
+  }
 );
 engine.start();
 ```
